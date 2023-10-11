@@ -16,6 +16,9 @@ class ProjectService(
     private val log = LoggerFactory.getLogger("project service")
 
     fun createProject(request: CreateProjectRequest) {
+
+        log.info("project 생성 시도 username = {}", request.username)
+
         val user = userRepository.findByName(request.username)
             ?: throw RuntimeException("user not found exception in Create Project Service")
 
@@ -27,7 +30,7 @@ class ProjectService(
         )
 
         projectRepository.save(project)
+        log.info("project 생성 성공 - project info = {} ", project.toString())
     }
-
 
 }
