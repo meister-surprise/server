@@ -26,6 +26,8 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     runtimeOnly("com.mysql:mysql-connector-j")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    implementation("com.amazonaws:aws-java-sdk-s3:1.12.364")
+
 }
 
 tasks.withType<KotlinCompile> {
