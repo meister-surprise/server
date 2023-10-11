@@ -12,4 +12,8 @@ class User(
     @Column(name = "name", nullable = false, unique = true)
     val name: String
 ) {
+
+    override fun toString(): String {
+        return "User(id=$id, name='$name')"
+    }
 }

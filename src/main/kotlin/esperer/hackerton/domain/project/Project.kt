@@ -22,4 +22,8 @@ class Project(
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     val user: User
-)
+) {
+    override fun toString(): String {
+        return "Project(id=$id, title='$title', code='$code', color='$color', user=$user)"
+    }
+}
