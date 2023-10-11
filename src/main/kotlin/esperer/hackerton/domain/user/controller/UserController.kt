@@ -4,6 +4,7 @@ import esperer.hackerton.domain.user.service.UserService
 import esperer.hackerton.domain.user.vo.CreateUserRequest
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -14,6 +15,7 @@ class UserController(
     private val userService: UserService
 ) {
 
+    @PostMapping
     fun saveUser(@RequestBody request: CreateUserRequest): ResponseEntity<Void> {
         userService.saveUser(request)
         return ResponseEntity.status(HttpStatus.CREATED).build()

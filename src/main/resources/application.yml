@@ -37,9 +37,9 @@ cloud:
       access-key: ${AWS_ACCESS}
       secret-key: ${AWS_SECRET}
     region:
-      static: ${AWS_REGION}
+      static: ${AWS_REGION:ap-northeast-2}
     s3:
-      bucket: ${AWS_BUCKET}
+      bucket: ${AWS_BUCKET:udt}
     stack:
       auto: false
 
