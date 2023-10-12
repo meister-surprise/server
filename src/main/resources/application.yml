@@ -31,7 +31,7 @@ spring:
     port: 6379
 
 chatgpt:
-  api-key: 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
+  api-key: ${CHATGPT_API_KEY}
 
 logging:
   level:

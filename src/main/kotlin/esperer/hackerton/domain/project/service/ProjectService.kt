@@ -89,4 +89,8 @@ class ProjectService(
         )
     }
 
+    fun deleteProject(id: Long) {
+        projectRepository.deleteById(id)
+    }
+
 }

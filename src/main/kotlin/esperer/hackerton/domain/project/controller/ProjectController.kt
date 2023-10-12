@@ -5,6 +5,7 @@ import esperer.hackerton.domain.project.vo.*
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -43,4 +44,9 @@ class ProjectController(
         return ResponseEntity.noContent().build()
     }
 
+    @DeleteMapping("/{id}")
+    fun deleteProject(@PathVariable id: Long): ResponseEntity<Void> {
+        projectService.deleteProject(id)
+        return ResponseEntity.noContent().build()
+    }
 }
