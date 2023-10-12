@@ -2,17 +2,16 @@ package esperer.hackerton.domain.project.service
 
 import esperer.hackerton.domain.project.Project
 import esperer.hackerton.domain.project.repository.ProjectRepository
-import esperer.hackerton.domain.project.vo.CreateProjectRequest
-import esperer.hackerton.domain.project.vo.ProjectDetailResponse
-import esperer.hackerton.domain.project.vo.ProjectResponse
-import esperer.hackerton.domain.project.vo.ScopeRequest
+import esperer.hackerton.domain.project.vo.*
 import esperer.hackerton.domain.user.repository.UserRepository
 import org.slf4j.LoggerFactory
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import java.lang.RuntimeException
 
 @Service
+@Transactional
 class ProjectService(
     private val projectRepository: ProjectRepository,
     private val userRepository: UserRepository
@@ -68,6 +67,25 @@ class ProjectService(
             code = project.code,
             username = project.user.name,
             scope = project.scope
+        )
+    }
+
+    fun updateProject(id: Long, request: UpdateProjectRequest) {
+        val project = projectRepository.findByIdOrNull(id)
+            ?: throw RuntimeException("Not found project")
+
+        val user = userRepository.findByName(request.username)
+            ?: throw RuntimeException("Not Found User")
+
+        projectRepository.save(
+            Project(
+                id = project.id,
+                title = request.title,
+                color = request.color,
+                code = request.code,
+                scope = request.scope,
+                user = user
+            )
         )
     }
 
