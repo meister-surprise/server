@@ -9,6 +9,6 @@ class HealthCheckController(
     private val env: Environment
 ) {
 
-    @GetMapping("/health")
-    fun healthCheck() = "OK ${env.getProperty("server.port")}"
+    @GetMapping("/spring/health")
+    fun healthCheck() = "OK Spring Server Port=${env.getProperty("server.port")}"
 }
