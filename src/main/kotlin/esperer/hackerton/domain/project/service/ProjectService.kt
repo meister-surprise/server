@@ -5,6 +5,7 @@ import esperer.hackerton.domain.project.repository.ProjectRepository
 import esperer.hackerton.domain.project.vo.CreateProjectRequest
 import esperer.hackerton.domain.project.vo.ProjectDetailResponse
 import esperer.hackerton.domain.project.vo.ProjectResponse
+import esperer.hackerton.domain.project.vo.ScopeRequest
 import esperer.hackerton.domain.user.repository.UserRepository
 import org.slf4j.LoggerFactory
 import org.springframework.data.repository.findByIdOrNull
@@ -29,6 +30,7 @@ class ProjectService(
             title = request.title,
             color = request.color,
             code = request.code,
+            scope = request.scope,
             user = user
         )
 
@@ -36,10 +38,10 @@ class ProjectService(
         log.info("project 생성 성공 - project info = {} ", project.toString())
     }
 
-    fun queryAllProjects(): List<ProjectResponse> {
+    fun queryAllProjects(request: ScopeRequest): List<ProjectResponse> {
         log.info("Run :: project 전체 조회")
 
-        val projects = projectRepository.findAll()
+        val projects = projectRepository.findAllByScope(request.scope)
 
         return projects.map {
             ProjectResponse(
@@ -64,7 +66,8 @@ class ProjectService(
             title = project.title,
             color = project.color,
             code = project.code,
-            username = project.user.name
+            username = project.user.name,
+            scope = project.scope
         )
     }
 

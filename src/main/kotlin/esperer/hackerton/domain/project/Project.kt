@@ -19,6 +19,10 @@ class Project(
     @Column(name = "color", columnDefinition = "VARCHAR(10)", nullable = false)
     val color: String, // 헥스코드로 색깔을 저장합니다.
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, columnDefinition = "VARCHAR(10) default 'PUBLIC'")
+    val scope: Scope,
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     val user: User
@@ -26,4 +30,8 @@ class Project(
     override fun toString(): String {
         return "Project(id=$id, title='$title', code='$code', color='$color', user=$user)"
     }
+}
+
+enum class Scope {
+    PUBLIC, PRIVATE
 }

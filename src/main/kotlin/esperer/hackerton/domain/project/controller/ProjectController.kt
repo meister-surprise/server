@@ -4,6 +4,7 @@ import esperer.hackerton.domain.project.service.ProjectService
 import esperer.hackerton.domain.project.vo.CreateProjectRequest
 import esperer.hackerton.domain.project.vo.ProjectDetailResponse
 import esperer.hackerton.domain.project.vo.ProjectResponse
+import esperer.hackerton.domain.project.vo.ScopeRequest
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -20,8 +21,6 @@ class ProjectController(
     private val projectService: ProjectService
 ) {
 
-    private val log = LoggerFactory.getLogger("Project Controller")
-
     @PostMapping
     fun createProject(@RequestBody request: CreateProjectRequest): ResponseEntity<Void> {
         projectService.createProject(request)
@@ -29,8 +28,8 @@ class ProjectController(
     }
 
     @GetMapping
-    fun queryAllProjects(): ResponseEntity<List<ProjectResponse>> {
-        val result = projectService.queryAllProjects()
+    fun queryAllProjects(@RequestBody request: ScopeRequest): ResponseEntity<List<ProjectResponse>> {
+        val result = projectService.queryAllProjects(request)
         return ResponseEntity.ok(result)
     }
 
