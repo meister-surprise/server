@@ -7,3 +7,7 @@ data class ProjectResponse(
     val username: String
 )
 
+
+data class AllProjectResponse(
+    val projects: List<ProjectResponse>
+)

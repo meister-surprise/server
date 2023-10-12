@@ -1,10 +1,7 @@
 package esperer.hackerton.domain.project.controller
 
 import esperer.hackerton.domain.project.service.ProjectService
-import esperer.hackerton.domain.project.vo.CreateProjectRequest
-import esperer.hackerton.domain.project.vo.ProjectDetailResponse
-import esperer.hackerton.domain.project.vo.ProjectResponse
-import esperer.hackerton.domain.project.vo.ScopeRequest
+import esperer.hackerton.domain.project.vo.*
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -28,13 +25,13 @@ class ProjectController(
     }
 
     @GetMapping
-    fun queryAllProjects(@RequestBody request: ScopeRequest): ResponseEntity<List<ProjectResponse>> {
+    fun queryAllProjects(request: ScopeRequest): ResponseEntity<AllProjectResponse> {
         val result = projectService.queryAllProjects(request)
-        return ResponseEntity.ok(result)
+        return ResponseEntity.ok(AllProjectResponse(result))
     }
 
     @GetMapping("/{id}")
-    fun queryProjectDetail(@PathVariable id: Long): ResponseEntity<ProjectDetailResponse>{
+    fun queryProjectDetail(@PathVariable id: Long): ResponseEntity<ProjectDetailResponse> {
         val result = projectService.queryProjectDetail(id)
         return ResponseEntity.ok(result)
     }
