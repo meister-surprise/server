@@ -27,6 +27,7 @@ dependencies {
     runtimeOnly("com.mysql:mysql-connector-j")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     implementation("com.amazonaws:aws-java-sdk-s3:1.12.364")
+    implementation("io.github.flashvayne:chatgpt-spring-boot-starter:1.0.4")
 
 }
 
