@@ -43,8 +43,7 @@ class GPTService(
             
             You must provide a variety of answers to the input and not repeat it
             
-            What is the correct answer if the user type 
-        """
+            What is the correct answer if the user type """
     }
 
     fun chat(request: ChatRequest): ChatResponse {

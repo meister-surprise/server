@@ -31,8 +31,12 @@ spring:
     port: 6379
 
 chatgpt:
-  api-key: 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
+  api-key: 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
 
+logging:
+  level:
+    org.apache.http: DEBUG
+    httpclient.wire: DEBUG
 
 cloud:
   aws:
